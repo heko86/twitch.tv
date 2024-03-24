@@ -3,6 +3,8 @@ import http from "http";
 import cors from "cors";
 import dotenv from "dotenv";
 
+import authRoutes from "./src/routes/authRoutes.js";
+
 dotenv.config();
 
 const PORT = process.env.PORT || process.env.API_PORT;
@@ -16,6 +18,8 @@ app.use(cors());
 app.get("/", (req, res) => {
   return res.send("Hello here is your server");
 });
+
+app.use("/api/auth", authRoutes);
 
 const server = http.createServer(app);
 
