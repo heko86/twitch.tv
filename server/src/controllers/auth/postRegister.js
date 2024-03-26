@@ -15,7 +15,7 @@ export const postRegister = async (req, res) => {
     const encryptedPassword = await bcrypt.hash(password, 10);
 
     const user = await User.create({
-      username: "Mark",
+      username,
       email: email.toLowerCase(),
       password: encryptedPassword,
     });
@@ -25,7 +25,7 @@ export const postRegister = async (req, res) => {
       // JWTトークンで暗号化したいユーザーの詳細
       {
         userId: user._id,
-        email,
+        email: user.email,
       },
       // シークレット
       process.env.TOKEN_KEY,
@@ -37,7 +37,7 @@ export const postRegister = async (req, res) => {
 
     return res.status(201).json({
       userDetails: {
-        email,
+        email: user.email,
         username,
         token,
       },
@@ -48,6 +48,4 @@ export const postRegister = async (req, res) => {
     console.log(err);
     return res.status(500).send("Error occured. Please try again");
   }
-
-  return res.send("user has been added to database");
 };
