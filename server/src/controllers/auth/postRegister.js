@@ -1,11 +1,53 @@
 import User from "../../models/User.js";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 export const postRegister = async (req, res) => {
-  const user = await User.create({
-    username: "Mark",
-    email: "test@ad.com",
-    password: "password",
-  });
+  try {
+    const { username, email, password } = req.body;
+
+    const userExists = await User.exists({ email });
+
+    if (userExists) {
+      return res.status(409).send("E-mail already in use");
+    }
+
+    const encryptedPassword = await bcrypt.hash(password, 10);
+
+    const user = await User.create({
+      username: "Mark",
+      email: email.toLowerCase(),
+      password: encryptedPassword,
+    });
+
+    // JWTトークン作成
+    const token = jwt.sign(
+      // JWTトークンで暗号化したいユーザーの詳細
+      {
+        userId: user._id,
+        email,
+      },
+      // シークレット
+      process.env.TOKEN_KEY,
+      // 追加の設定
+      {
+        expiresIn: "8h",
+      }
+    );
+
+    return res.status(201).json({
+      userDetails: {
+        email,
+        username,
+        token,
+      },
+    });
+
+    // 登録ユーザーとJWTのデータを含む成功レスポンスをユーザーに送信
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send("Error occured. Please try again");
+  }
 
   return res.send("user has been added to database");
 };
