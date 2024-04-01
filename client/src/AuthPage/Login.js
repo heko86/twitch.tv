@@ -32,7 +32,6 @@ export const Login = ({ switchAuthHandler }) => {
     }));
   };
 
-  console.log(formState);
   const handleInputValidationOnBlur = (value, field) => {
     let isValid = false;
     switch (field) {
