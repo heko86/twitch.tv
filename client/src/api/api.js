@@ -18,7 +18,7 @@ export const login = async (data) => {
 
 export const register = async (data) => {
   try {
-    apiClient.post("auth/register", data);
+    return await apiClient.post("auth/register", data);
   } catch (exception) {
     return {
       error: true,
