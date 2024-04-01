@@ -7,8 +7,10 @@ import {
   validateEmail,
   validatePassword,
 } from "../shared/validators";
+import { useLogin } from "../shared/hooks";
 
 export const Login = ({ switchAuthHandler }) => {
+  const { login, isLoading } = useLogin();
   const [formState, setFormState] = useState({
     email: {
       value: "",
@@ -55,6 +57,14 @@ export const Login = ({ switchAuthHandler }) => {
     }));
   };
 
+  const handleLogin = (event) => {
+    event.preventDefault();
+    login(formState.email.value, formState.password.value);
+  };
+
+  const isSubmitButtonDisabled =
+    (isLoading && !formState.email.isValid) || !formState.password.isValid;
+
   return (
     <div className="login-container">
       <Logo text={"Log in to Clone"} />
@@ -79,9 +89,7 @@ export const Login = ({ switchAuthHandler }) => {
           showErrorMessage={formState.password.showError}
           validationMessage={passwordValidationMessage}
         />
-        <button
-          disabled={!formState.email.isValid || !formState.password.isValid}
-        >
+        <button onClick={handleLogin} disabled={isSubmitButtonDisabled}>
           Login in
         </button>
       </form>
