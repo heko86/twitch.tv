@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { register as registerRequest } from "../../api";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export const useRegister = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -15,7 +16,10 @@ export const useRegister = () => {
     });
     setIsLoading(false);
     if (response.error) {
-      return console.log(response.error);
+      return toast.error(
+        response?.exception?.data ||
+          "error occured while signing up. Please try again"
+      );
     }
 
     const { userDetails } = response.data;
