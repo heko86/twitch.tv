@@ -15,8 +15,10 @@ export const useLogin = () => {
     });
     setIsLoading(false);
     if (response.error) {
+      console.log("🚀 ~ login ~ response.error:", response);
+
       return toast.error(
-        response?.exception?.data ||
+        response?.exception?.response.data ||
           "error occured while loggin in. Please try again"
       );
     }
