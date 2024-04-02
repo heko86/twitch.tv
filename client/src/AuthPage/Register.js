@@ -83,7 +83,7 @@ export const Register = ({ switchAuthHandler }) => {
     register(
       formState.email.value,
       formState.password.value,
-      formState.username
+      formState.username.value
     );
   };
 
