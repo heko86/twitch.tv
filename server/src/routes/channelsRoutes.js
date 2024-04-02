@@ -1,7 +1,7 @@
 import express from "express";
 import Joi from "joi";
 import ExpressValidation from "express-joi-validation";
-import { getChannelDetails } from "../controllers/controllers.js";
+import { getChannelDetails, getChannels } from "../controllers/controllers.js";
 
 const router = express.Router();
 
@@ -16,4 +16,6 @@ router.get(
   validator.params(channelDetailsSchema),
   getChannelDetails
 );
+
+router.get("/", getChannels);
 export default router;
