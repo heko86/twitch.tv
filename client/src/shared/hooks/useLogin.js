@@ -15,8 +15,6 @@ export const useLogin = () => {
     });
     setIsLoading(false);
     if (response.error) {
-      console.log("🚀 ~ login ~ response.error:", response);
-
       return toast.error(
         response?.exception?.response.data ||
           "error occured while loggin in. Please try again"
@@ -25,7 +23,7 @@ export const useLogin = () => {
 
     const { userDetails } = response.data;
 
-    localStorage.setItem("user", userDetails);
+    localStorage.setItem("user", JSON.stringify(userDetails));
 
     navigate("/");
   };
