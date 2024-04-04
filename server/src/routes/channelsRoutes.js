@@ -1,7 +1,12 @@
 import express from "express";
 import Joi from "joi";
 import ExpressValidation from "express-joi-validation";
-import { getChannelDetails, getChannels } from "../controllers/controllers.js";
+import {
+  getChannelDetails,
+  getChannels,
+  postFollowChannel,
+} from "../controllers/controllers.js";
+import { verifyToken } from "../controllers/middlewares/auth.js";
 
 const router = express.Router();
 
@@ -10,6 +15,13 @@ const channelDetailsSchema = Joi.object({
 });
 
 const validator = ExpressValidation.createValidator({});
+
+router.post(
+  "/follow",
+  verifyToken,
+  validator.body(channelDetailsSchema),
+  postFollowChannel
+);
 
 router.get(
   "/:channelId",
