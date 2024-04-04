@@ -5,6 +5,7 @@ import {
   getChannelDetails,
   getChannels,
   postFollowChannel,
+  getFollowedChannels,
 } from "../controllers/controllers.js";
 import { verifyToken } from "../controllers/middlewares/auth.js";
 
@@ -15,6 +16,8 @@ const channelDetailsSchema = Joi.object({
 });
 
 const validator = ExpressValidation.createValidator({});
+
+router.get("/followed", verifyToken, getFollowedChannels);
 
 router.post(
   "/follow",
