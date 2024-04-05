@@ -26,3 +26,14 @@ export const register = async (data) => {
     };
   }
 };
+
+export const getChannelSettings = async (data) => {
+  try {
+    return await apiClient.get("/channels", data);
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};

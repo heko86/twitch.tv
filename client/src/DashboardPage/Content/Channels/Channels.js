@@ -33,7 +33,6 @@ const dummyChannel = [
 ];
 
 export const Channels = () => {
-  console.log("0");
   return (
     <div className="channels-container">
       {dummyChannel.map((c) => (
