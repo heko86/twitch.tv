@@ -3,19 +3,20 @@ import { StreamKey } from "./StreamKey";
 import { ChannelSettings } from "./ChannelSettings";
 import { PasswordSettings } from "./PasswordSettings";
 import { useChannelSettings } from "../../../shared/hooks";
+import { LoadingSpinner } from "../../../shared/component";
 
 export const Settings = () => {
-  const { chanelSettings } = useChannelSettings();
+  const { channelSettings, isFetching, saveSettings } = useChannelSettings();
 
-  if (!chanelSettings) {
-    return <span>Fetching the data</span>;
+  if (isFetching) {
+    return <LoadingSpinner />;
   }
   return (
     <div className="settings-container">
       <spna>Settings</spna>
-      <ChannelSettings settings={chanelSettings} />
+      <ChannelSettings settings={channelSettings} saveSettings={saveSettings} />
       <PasswordSettings />
-      <StreamKey streamKey={chanelSettings.streamKey} />
+      <StreamKey streamKey={channelSettings.streamKey} />
     </div>
   );
 };
