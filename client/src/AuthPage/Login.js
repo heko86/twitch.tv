@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Logo } from "./Logo";
-import { AuthInput } from "./AuthInput";
+import { useLogin } from "../shared/hooks";
+import { Input } from "../shared/component/Input";
 import {
   emailValidationMessage,
   passwordValidationMessage,
   validateEmail,
   validatePassword,
 } from "../shared/validators";
-import { useLogin } from "../shared/hooks";
 
 export const Login = ({ switchAuthHandler }) => {
   const { login, isLoading } = useLogin();
@@ -69,7 +69,7 @@ export const Login = ({ switchAuthHandler }) => {
     <div className="login-container">
       <Logo text={"Log in to Clone"} />
       <form className="auth-form">
-        <AuthInput
+        <Input
           field="email"
           label="Email"
           value={formState.email.value}
@@ -79,7 +79,7 @@ export const Login = ({ switchAuthHandler }) => {
           showErrorMessage={formState.email.showError}
           validationMessage={emailValidationMessage}
         />
-        <AuthInput
+        <Input
           field="password"
           label="Password"
           value={formState.password.value}
