@@ -4,6 +4,7 @@ import {
   validatePassword,
 } from "../../../shared/validators";
 import { Input } from "../../../shared/component";
+import { useChangePassword } from "../../../shared/hooks";
 
 const inputs = [
   {
@@ -34,6 +35,8 @@ export const PasswordSettings = () => {
     },
   });
 
+  const { changePassword } = useChangePassword();
+
   const handleInputValueChange = (value, field) => {
     setFormState((prevState) => ({
       ...prevState,
@@ -61,8 +64,8 @@ export const PasswordSettings = () => {
     !formState.password.isValid || !formState.newPassword.isValid;
 
   const handleFormSubmit = (e) => {
-    e.preventDefalut();
-    // http call to change the password
+    e.preventDefault();
+    changePassword(formState.password.value, formState.newPassword.value);
   };
 
   return (
