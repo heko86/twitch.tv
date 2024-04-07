@@ -10,7 +10,7 @@ export const getChannels = async (_, res) => {
       }
     ).populate("channel");
 
-    const channel = users
+    const channels = users
       .filter((u) => u.channel.isActive)
       .map((user) => {
         return {
@@ -22,7 +22,9 @@ export const getChannels = async (_, res) => {
         };
       });
 
-    return res.json({ channel });
+    return res.json({
+      channels,
+    });
   } catch (err) {
     console.log(err);
     return res.status(500).send("Something went worng");
