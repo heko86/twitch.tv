@@ -1,38 +1,14 @@
 import React from "react";
 import { ChannelCard } from "./ChannelCard";
-
-const dummyChannel = [
-  {
-    id: 1,
-    title: "test1",
-    username: "miya",
-    avatarUrl: null,
-    isOnline: false,
-  },
-  {
-    id: 2,
-    title: "test2",
-    username: "hoge",
-    avatarUrl: null,
-    isOnline: false,
-  },
-  {
-    id: 3,
-    title: "test3",
-    username: "fuga",
-    avatarUrl: null,
-    isOnline: true,
-  },
-  {
-    id: 4,
-    title: "test4",
-    username: "miya2",
-    avatarUrl: null,
-    isOnline: true,
-  },
-];
+import { useNavigate } from "react-router-dom";
 
 export const Channels = ({ channels }) => {
+  const navigate = useNavigate();
+
+  const handleNavigateToChannel = (id) => {
+    navigate(`/channel/${id}`);
+  };
+
   return (
     <div className="channels-container">
       {channels.map((c) => (
@@ -43,7 +19,7 @@ export const Channels = ({ channels }) => {
           username={c.username}
           avatarUrl={c.avatarUrl}
           isOnline={c.isOnline}
-          //   navigateToChannelHandler={}
+          navigateToChannelHandler={handleNavigateToChannel}
         />
       ))}
     </div>
