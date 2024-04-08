@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import {
   getFollowedChannels,
@@ -41,11 +41,10 @@ export const useChannels = () => {
     });
   };
 
-  useEffect(() => {
-    console.log(channels);
-  }, [channels]);
-
   return {
     getChannels,
+    isFetching: Boolean(!channels),
+    allChannels: channels?.channels,
+    followedChannels: channels?.followedChannels,
   };
 };

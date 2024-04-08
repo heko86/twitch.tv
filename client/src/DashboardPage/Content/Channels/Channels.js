@@ -32,10 +32,10 @@ const dummyChannel = [
   },
 ];
 
-export const Channels = () => {
+export const Channels = ({ channels }) => {
   return (
     <div className="channels-container">
-      {dummyChannel.map((c) => (
+      {channels.map((c) => (
         <ChannelCard
           key={c.id}
           id={c.id}
