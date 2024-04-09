@@ -129,7 +129,7 @@ export const Register = ({ switchAuthHandler }) => {
         />
         <Input
           field="passwordConf"
-          label="password confirmation"
+          label="Password confirmation"
           value={formState.passwordConf.value}
           onChangeHandler={handleInputValueChange}
           type="password"
