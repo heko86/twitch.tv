@@ -5,7 +5,7 @@ import { useChannelDetails } from "../../../shared/hooks";
 import { useParams } from "react-router-dom";
 import { LoadingSpinner } from "../../../shared/component";
 
-export const ChannelView = () => {
+export const ChannelView = ({ getChannels }) => {
   const { isFetching, channelDetails, getChannelDetails } = useChannelDetails();
 
   const { id } = useParams();
@@ -24,11 +24,12 @@ export const ChannelView = () => {
           <span>Channel is Offline</span>
         </div>
         <ChannelDescription
-          id={1}
+          channelId={channelDetails.id}
           username={channelDetails.username}
           title={channelDetails.title}
           description={channelDetails.description}
           isOnline={false}
+          getChannels={getChannels}
         />
       </div>
       <Chat />
