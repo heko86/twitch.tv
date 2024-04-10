@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 import authRoutes from "./src/routes/authRoutes.js";
 import channelsRoutes from "./src/routes/channelsRoutes.js";
 import settingsRouters from "./src/routes/settingsRouters.js";
+import { registerSoketServer } from "./src/io/io.js";
 
 dotenv.config();
 
@@ -26,6 +27,8 @@ app.use("/api/channels", channelsRoutes);
 app.use("/api/settings", settingsRouters);
 
 const server = http.createServer(app);
+
+registerSoketServer(server);
 
 mongoose
   .connect(process.env.MONGO_URI)
