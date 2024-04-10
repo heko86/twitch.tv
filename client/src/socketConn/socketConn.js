@@ -16,5 +16,5 @@ export const connectWithSocketServer = () => {
 };
 
 export const getChatHisotry = (channelId) => {
-  socket.emit("chat-histroy", channelId);
+  socket.emit("chat-history", channelId);
 };

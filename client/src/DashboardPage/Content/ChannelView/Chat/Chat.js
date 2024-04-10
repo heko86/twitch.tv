@@ -1,8 +1,11 @@
 import React from "react";
 import { Messages } from "./Messages";
 import { NewMessageInput } from "./NewMessageInput";
+import { useChatHistory } from "../../../../shared/hooks";
 
-export const Chat = () => {
+export const Chat = ({ channelId }) => {
+  const { message, sendMessage } = useChatHistory(channelId);
+
   return (
     <div className="chat-section">
       <div className="chat-title-container">
