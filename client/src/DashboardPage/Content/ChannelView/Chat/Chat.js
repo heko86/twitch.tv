@@ -13,7 +13,7 @@ export const Chat = ({ channelId }) => {
       </div>
 
       <Messages messages={[]} />
-      <NewMessageInput sendMessage={() => {}} />
+      <NewMessageInput sendMessage={sendMessage} />
     </div>
   );
 };

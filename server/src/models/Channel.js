@@ -1,10 +1,10 @@
-import mongoose, { Mongoose } from "mongoose";
+import mongoose from "mongoose";
 import { v4 as uuid } from "uuid";
 
 const { Schema } = mongoose;
 
 const defaultTitle = "New Channel";
-const defaultDescription = "This is new Channel description";
+const defaultDescription = "This is new channel description";
 
 const channelSchema = new Schema({
   isActive: { type: Boolean, default: false },
@@ -13,12 +13,7 @@ const channelSchema = new Schema({
   avatarUrl: { type: String, default: "none" },
   streamKey: { type: String, default: uuid },
   messages: {
-    type: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Message",
-      },
-    ],
+    type: [{ type: Schema.Types.ObjectId, ref: "Message" }],
     default: [],
   },
 });

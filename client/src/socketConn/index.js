@@ -1,1 +1,5 @@
-export { connectWithSocketServer, getChatHisotry } from "./socketConn";
+export {
+  connectWithSocketServer,
+  getChatHisotry,
+  sendChatMessage,
+} from "./socketConn";
