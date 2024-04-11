@@ -1,4 +1,6 @@
 import { io } from "socket.io-client";
+import { useStore } from "../store/store";
+
 let socket;
 
 export const connectWithSocketServer = () => {
@@ -10,8 +12,23 @@ export const connectWithSocketServer = () => {
   });
 
   socket.on("chat-history", (chatHistory) => {
-    console.log(chatHistory);
-    console.log("chat-history-came-from-the-server");
+    const { setChatHistory } = useStore.getState();
+    setChatHistory(chatHistory);
+  });
+
+  socket.on("chat-message", (chatMessage) => {
+    const { chatHistory, setChatHistory } = useStore.getState();
+    setChatHistory({
+      channelId: chatHistory.channelId,
+      messages: [
+        ...chatHistory.messages,
+        {
+          author: chatMessage.author,
+          content: chatMessage.content,
+          date: chatMessage.date,
+        },
+      ],
+    });
   });
 };
 
@@ -24,4 +41,8 @@ export const sendChatMessage = (toChannel, message) => {
     toChannel,
     message,
   });
+};
+
+export const closeChatSubscription = (channelId) => {
+  socket.emit("chat-unsubscribe", channelId);
 };
