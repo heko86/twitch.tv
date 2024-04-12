@@ -108,10 +108,11 @@ export const getChannelDetails = async (channelId) => {
   }
 };
 
-export const followChannel = async (channelId) => {
+export const followChannel = async (channelId, searchFlag) => {
   try {
     return await apiClient.post("/channels/follow", {
       channelId,
+      searchFlag,
     });
   } catch (exception) {
     return {

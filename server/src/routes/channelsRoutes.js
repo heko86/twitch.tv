@@ -13,6 +13,7 @@ const router = express.Router();
 
 const channelDetailsSchema = Joi.object({
   channelId: Joi.string().required(),
+  searchFlag: Joi.boolean(),
 });
 
 const validator = ExpressValidation.createValidator({});
