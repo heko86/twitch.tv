@@ -73,7 +73,7 @@ export const ChannelSettings = ({ settings, saveSettings }) => {
     }));
   };
 
-  const handleInputValidationOnBlur = (value, field) => {
+  const handleInputValidation = (value, field) => {
     let isValid = false;
     switch (field) {
       case "username":
@@ -128,7 +128,7 @@ export const ChannelSettings = ({ settings, saveSettings }) => {
           label={input.label}
           value={formState[input.field].value}
           onChangeHandler={handleInputValueChange}
-          onBlurHandler={handleInputValidationOnBlur}
+          onInputHandler={handleInputValidation}
           showErrorMessage={formState[input.field].showError}
           validationMessage={input.validationMessage}
           type={input.type}

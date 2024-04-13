@@ -34,7 +34,7 @@ export const Login = ({ switchAuthHandler }) => {
     }));
   };
 
-  const handleInputValidationOnBlur = (value, field) => {
+  const handleInputValidation = (value, field) => {
     let isValid = false;
     switch (field) {
       case "email":
@@ -75,7 +75,7 @@ export const Login = ({ switchAuthHandler }) => {
           value={formState.email.value}
           onChangeHandler={handleInputValueChange}
           type="text"
-          onBlurHandler={handleInputValidationOnBlur}
+          onInputHandler={handleInputValidation}
           showErrorMessage={formState.email.showError}
           validationMessage={emailValidationMessage}
         />
@@ -85,7 +85,7 @@ export const Login = ({ switchAuthHandler }) => {
           value={formState.password.value}
           onChangeHandler={handleInputValueChange}
           type="password"
-          onBlurHandler={handleInputValidationOnBlur}
+          onInputHandler={handleInputValidation}
           showErrorMessage={formState.password.showError}
           validationMessage={passwordValidationMessage}
         />

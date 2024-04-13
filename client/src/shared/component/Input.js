@@ -8,15 +8,15 @@ export const Input = ({
   type,
   showErrorMessage,
   validationMessage,
-  onBlurHandler,
+  onInputHandler,
   textArea,
 }) => {
   const handleValueChange = (e) => {
     onChangeHandler(e.target.value, field);
   };
 
-  const handleInputBlur = (e) => {
-    onBlurHandler(e.target.value, field);
+  const handleInput = (e) => {
+    onInputHandler(e.target.value, field);
   };
 
   return (
@@ -29,7 +29,7 @@ export const Input = ({
           type={type}
           value={value}
           onChange={handleValueChange}
-          onBlur={handleInputBlur}
+          onInput={handleInput}
           rows={5}
           style={{ maxWidth: "400px" }}
         />
@@ -38,7 +38,7 @@ export const Input = ({
           type={type}
           value={value}
           onChange={handleValueChange}
-          onBlur={handleInputBlur}
+          onInput={handleInput}
         />
       )}
 

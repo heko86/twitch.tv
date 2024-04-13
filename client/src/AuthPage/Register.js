@@ -48,7 +48,7 @@ export const Register = ({ switchAuthHandler }) => {
     }));
   };
 
-  const handleInputValidationOnBlur = (value, field) => {
+  const handleInputValidation = (value, field) => {
     let isValid = false;
     switch (field) {
       case "email":
@@ -103,7 +103,7 @@ export const Register = ({ switchAuthHandler }) => {
           value={formState.email.value}
           onChangeHandler={handleInputValueChange}
           type="text"
-          onBlurHandler={handleInputValidationOnBlur}
+          onInputHandler={handleInputValidation}
           showErrorMessage={formState.email.showError}
           validationMessage={emailValidationMessage}
         />
@@ -113,7 +113,7 @@ export const Register = ({ switchAuthHandler }) => {
           value={formState.username.value}
           onChangeHandler={handleInputValueChange}
           type="text"
-          onBlurHandler={handleInputValidationOnBlur}
+          onInputHandler={handleInputValidation}
           showErrorMessage={formState.username.showError}
           validationMessage={usernameValidationMessage}
         />
@@ -123,7 +123,7 @@ export const Register = ({ switchAuthHandler }) => {
           value={formState.password.value}
           onChangeHandler={handleInputValueChange}
           type="password"
-          onBlurHandler={handleInputValidationOnBlur}
+          onBlurHandler={handleInputValidation}
           showErrorMessage={formState.password.showError}
           validationMessage={passwordValidationMessage}
         />
@@ -133,7 +133,7 @@ export const Register = ({ switchAuthHandler }) => {
           value={formState.passwordConf.value}
           onChangeHandler={handleInputValueChange}
           type="password"
-          onBlurHandler={handleInputValidationOnBlur}
+          onBlurHandler={handleInputValidation}
           showErrorMessage={formState.passwordConf.showError}
           validationMessage={passwordConfValidationMessage}
         />

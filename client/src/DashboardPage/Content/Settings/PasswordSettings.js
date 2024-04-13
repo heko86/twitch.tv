@@ -47,7 +47,7 @@ export const PasswordSettings = () => {
     }));
   };
 
-  const handleInputValidationOnBlur = (value, field) => {
+  const handleInputValidation = (value, field) => {
     let isValid = validatePassword(value);
 
     setFormState((prevState) => ({
@@ -76,7 +76,7 @@ export const PasswordSettings = () => {
           field={input.field}
           label={input.label}
           value={formState[input.field].value}
-          onBlurHandler={handleInputValidationOnBlur}
+          onInputHandler={handleInputValidation}
           onChangeHandler={handleInputValueChange}
           showErrorMessage={formState[input.field].showError}
           validationMessage={input.validationMessage}
