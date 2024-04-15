@@ -8,9 +8,11 @@ import {
   validateEmail,
   validatePassword,
 } from "../shared/validators";
+import { useNavigate } from "react-router-dom";
 
 export const Login = ({ switchAuthHandler }) => {
   const { login, isLoading } = useLogin();
+  const navigate = useNavigate();
   const [formState, setFormState] = useState({
     email: {
       value: "",
@@ -62,6 +64,11 @@ export const Login = ({ switchAuthHandler }) => {
     login(formState.email.value, formState.password.value);
   };
 
+  const handleGuestLogin = () => {
+    localStorage.removeItem("user");
+    navigate("/channels");
+  };
+
   const isSubmitButtonDisabled =
     (isLoading && !formState.email.isValid) || !formState.password.isValid;
 
@@ -90,11 +97,14 @@ export const Login = ({ switchAuthHandler }) => {
           validationMessage={passwordValidationMessage}
         />
         <button onClick={handleLogin} disabled={isSubmitButtonDisabled}>
-          Login in
+          ログイン
         </button>
       </form>
+      <span onClick={handleGuestLogin} className="auth-form-switch-label">
+        ゲストユーザーログイン
+      </span>
       <span onClick={switchAuthHandler} className="auth-form-switch-label">
-        Don't have an account ? Sign up
+        新規登録
       </span>
     </div>
   );
