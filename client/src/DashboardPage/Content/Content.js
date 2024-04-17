@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { Channels } from "./Channels";
 import { ChannelView } from "./ChannelView";
 import { Settings } from "./Settings";
+import { Items } from "./Items";
 
 export const Content = ({ channels, getChannels }) => {
   return (
@@ -14,6 +15,7 @@ export const Content = ({ channels, getChannels }) => {
           path="channel/:id"
           element={<ChannelView getChannels={getChannels} />}
         />
+        <Route path="items" element={<Items />} />
       </Routes>
     </div>
   );

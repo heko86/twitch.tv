@@ -36,6 +36,10 @@ export const Nav = () => {
     navigate("/settings");
   };
 
+  const handleNavigateToItems = () => {
+    navigate("/items");
+  };
+
   const handleLogout = () => {
     logout();
   };
@@ -49,11 +53,12 @@ export const Nav = () => {
           <NavButton text="Login" onClickHandler={handleNavigateToAuth} />
         ) : (
           <div>
+            <NavButton text="アイテム" onClickHandler={handleNavigateToItems} />
             <NavButton
-              text="My Account"
+              text="マイアカウント"
               onClickHandler={handleNavigateToSettings}
             />
-            <NavButton text="Logout" onClickHandler={handleLogout} />
+            <NavButton text="ログアウト" onClickHandler={handleLogout} />
           </div>
         )}
       </div>

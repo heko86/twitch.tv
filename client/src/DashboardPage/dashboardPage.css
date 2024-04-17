@@ -333,3 +333,23 @@
     transform: rotate(360deg);
   }
 }
+
+.items-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.item-container {
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.item-container:hover {
+  transform: scale(1.1);
+}
+
+.item-size {
+  width: 100px;
+  height: 100px;
+}
