@@ -11,6 +11,7 @@ import Channel from "./src/models/Channel.js";
 import authRoutes from "./src/routes/authRoutes.js";
 import channelsRoutes from "./src/routes/channelsRoutes.js";
 import settingsRouters from "./src/routes/settingsRouters.js";
+import itemsRouters from "./src/routes/itemsRouters.js";
 import { registerSoketServer } from "./src/io/io.js";
 
 dotenv.config();
@@ -30,6 +31,7 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/channels", channelsRoutes);
 app.use("/api/settings", settingsRouters);
+app.use("/api/items", itemsRouters);
 
 const server = http.createServer(app);
 
