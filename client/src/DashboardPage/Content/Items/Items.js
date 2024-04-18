@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import beerBuncho from "../../../resources/images/items/beer-buncho.png";
 import bunchoKashige from "../../../resources/images/items/buncho-kashige.png";
 import mattariBuncho from "../../../resources/images/items/mattari-buncho.png";
 import susaBuncho from "../../../resources/images/items/susa-buncho.png";
 import toris from "../../../resources/images/items/toris.png";
 import workBuncho from "../../../resources/images/items/work-buncho.png";
-
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import {
+  Button,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+} from "@mui/material";
+import { useChargePoint } from "../../../shared/hooks/useChargePoint";
 const ItemData = [
   {
     itemName: "文鳥（ビール）",
@@ -39,13 +47,76 @@ const ItemData = [
   },
 ];
 
-const Item = ({ itemName, img, point }) => {
+const style = {
+  display: "flex",
+  alignItems: "center",
+};
+
+const ConfirmDialog = ({
+  itemName,
+  img,
+  point,
+  openDialog = false,
+  switchDialog,
+}) => {
+  const { chargePoint } = useChargePoint();
+  const handleClose = () => switchDialog(false);
+  const handlePurchaseItem = (point) => {
+    chargePoint(point);
+    switchDialog(false);
+  };
   return (
-    <div className="item-container">
-      <img src={img} alt="アイテム画像" className="item-size" />
-      <div>{itemName}</div>
-      <div>{point}&nbsp;pt</div>
-    </div>
+    <>
+      <Dialog
+        open={openDialog}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"購入確認"}</DialogTitle>
+        <DialogContent css={style}>
+          <DialogContentText sx={style} id="alert-dialog-description">
+            <img src={img} alt="アイテム画像" className="item-size" />
+            {`【${itemName}(${point}pt)】を購入します。よろしいですか？`}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>キャンセル</Button>
+          <Button
+            onClick={() => {
+              handlePurchaseItem(point);
+            }}
+          >
+            購入
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
+  );
+};
+
+const Item = ({ itemName, img, point }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleOpen = () => {
+    setModalOpen(true);
+  };
+
+  return (
+    <>
+      <div className="item-container" onClick={handleOpen}>
+        <img src={img} alt="アイテム画像" className="item-size" />
+        <div>{itemName}</div>
+        <div>{point}&nbsp;pt</div>
+      </div>
+      <ConfirmDialog
+        openDialog={modalOpen}
+        itemName={itemName}
+        point={point}
+        img={img}
+        switchDialog={setModalOpen}
+      />
+    </>
   );
 };
 
@@ -53,12 +124,9 @@ export const Items = () => {
   return (
     <div className="items-container">
       {ItemData.map((item) => (
-        <Item
-          key={item.itemName}
-          itemName={item.itemName}
-          img={item.image}
-          point={item.point}
-        />
+        <div key={item.itemName}>
+          <Item itemName={item.itemName} img={item.image} point={item.point} />
+        </div>
       ))}
     </div>
   );

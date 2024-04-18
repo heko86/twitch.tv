@@ -48,9 +48,9 @@ export const Nav = () => {
     <div className="nav-container">
       <NavLogo />
       <div className="nav-buttons-container">
-        <NavButton text="Browse" onClickHandler={handleNavigateToChannels} />
+        <NavButton text="一覧" onClickHandler={handleNavigateToChannels} />
         {!isLogged ? (
-          <NavButton text="Login" onClickHandler={handleNavigateToAuth} />
+          <NavButton text="ログイン" onClickHandler={handleNavigateToAuth} />
         ) : (
           <div>
             <NavButton text="アイテム" onClickHandler={handleNavigateToItems} />

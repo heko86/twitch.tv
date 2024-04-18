@@ -121,3 +121,14 @@ export const followChannel = async (channelId, searchFlag) => {
     };
   }
 };
+
+export const chargePoint = async (point) => {
+  try {
+    return await apiClient.put("/items/point", { point });
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};

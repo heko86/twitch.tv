@@ -8,11 +8,11 @@ export const putChargePoint = async (req, res) => {
 
     const userPoint = await User.findById(userId, { point: 1 });
 
-    const chargedPint = (userPoint.point += point);
+    const chargedPoint = (userPoint.point += point);
 
-    await User.updateOne({ point: chargedPint });
+    await User.updateOne({ point: chargedPoint });
 
-    return res.status(200);
+    return res.status(200).send("successfully");
   } catch (e) {
     console.log(e);
     return res.status(500).send("Something went wrong");
