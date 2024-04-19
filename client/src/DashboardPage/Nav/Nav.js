@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "../../resources/images/logoPlaceholder.svg";
-import { useUserDetails } from "../../shared/hooks";
 import { useNavigate } from "react-router-dom";
+import { TemporaryDrawer } from "./TemporaryDrawer";
 
 const NavLogo = () => {
   return (
@@ -20,8 +20,6 @@ const NavButton = ({ text, onClickHandler }) => {
 };
 
 export const Nav = () => {
-  const { isLogged, logout } = useUserDetails();
-
   const navigate = useNavigate();
 
   const handleNavigateToAuth = () => {
@@ -32,35 +30,14 @@ export const Nav = () => {
     navigate("/channels");
   };
 
-  const handleNavigateToSettings = () => {
-    navigate("/settings");
-  };
-
-  const handleNavigateToItems = () => {
-    navigate("/items");
-  };
-
-  const handleLogout = () => {
-    logout();
-  };
-
   return (
     <div className="nav-container">
       <NavLogo />
       <div className="nav-buttons-container">
         <NavButton text="一覧" onClickHandler={handleNavigateToChannels} />
-        {!isLogged ? (
-          <NavButton text="ログイン" onClickHandler={handleNavigateToAuth} />
-        ) : (
-          <div>
-            <NavButton text="アイテム" onClickHandler={handleNavigateToItems} />
-            <NavButton
-              text="マイアカウント"
-              onClickHandler={handleNavigateToSettings}
-            />
-            <NavButton text="ログアウト" onClickHandler={handleLogout} />
-          </div>
-        )}
+        <div>
+          <NavButton text={<TemporaryDrawer />} />
+        </div>
       </div>
     </div>
   );
