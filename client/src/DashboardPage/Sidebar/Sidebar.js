@@ -1,27 +1,18 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { ChannelView } from "../Content/ChannelView";
 
-const FollowedChannels = [
-  {
-    id: 1,
-    username: "miya",
-    isOnline: false,
-  },
-  {
-    id: 2,
-    username: "hoge",
-    isOnline: true,
-  },
-  {
-    id: 3,
-    username: "huga",
-    isOnline: true,
-  },
-];
-
-export const Sidebar = ({ channels }) => {
+export const Sidebar = ({ channels, getChannels }) => {
+  const navigate = useNavigate();
   if (!channels) {
     return null;
   }
+
+  const handleChannelClick = (channel) => {
+    console.log(channel);
+    navigate(`/channel/${channel.id}`);
+    window.location.reload();
+  };
 
   return (
     <div className="sidebar-container">
@@ -29,7 +20,13 @@ export const Sidebar = ({ channels }) => {
       <span className="sidebar-subtitle">FOLLOWED CHANNEL</span>
       {channels?.map((channel) => {
         return (
-          <div key={channel.id} className="sidebar-list-item">
+          <div
+            key={channel.id}
+            className="sidebar-list-item"
+            onClick={() => {
+              handleChannelClick(channel);
+            }}
+          >
             <span className="sidebar-list-username">{channel.username}</span>
             <span
               className="sidebar-list-status"
