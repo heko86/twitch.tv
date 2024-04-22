@@ -50,7 +50,7 @@ export const TemporaryDrawer = () => {
   const handleListItems = (listName) => {
     switch (listName) {
       case "マイページ":
-        navigate("/");
+        navigate("/mypage");
         break;
       case "チャンネル設定":
         navigate("/settings");

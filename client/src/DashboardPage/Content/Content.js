@@ -4,6 +4,7 @@ import { Channels } from "./Channels";
 import { ChannelView } from "./ChannelView";
 import { Settings } from "./Settings";
 import { Items } from "./Items";
+import { MyPage } from "./MyPage";
 
 export const Content = ({ channels, getChannels }) => {
   return (
@@ -16,6 +17,7 @@ export const Content = ({ channels, getChannels }) => {
           element={<ChannelView getChannels={getChannels} />}
         />
         <Route path="items" element={<Items />} />
+        <Route path="mypage" element={<MyPage />} />
       </Routes>
     </div>
   );

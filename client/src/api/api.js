@@ -132,3 +132,14 @@ export const chargePoint = async (point) => {
     };
   }
 };
+
+export const getPoints = async () => {
+  try {
+    return await apiClient.get("/items/points");
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};

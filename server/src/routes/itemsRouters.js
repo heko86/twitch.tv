@@ -2,7 +2,7 @@ import express from "express";
 import Joi from "joi";
 import { verifyToken } from "../controllers/middlewares/auth.js";
 import ExpressValidation from "express-joi-validation";
-import { putChargePoint } from "../controllers/controllers.js";
+import { getPoints, putChargePoint } from "../controllers/controllers.js";
 
 const router = express.Router();
 
@@ -18,5 +18,7 @@ router.put(
   validator.body(chargePointSchema),
   putChargePoint
 );
+
+router.get("/points", verifyToken, getPoints);
 
 export default router;
