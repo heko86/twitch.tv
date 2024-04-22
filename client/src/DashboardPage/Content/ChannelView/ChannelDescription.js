@@ -18,7 +18,7 @@ const FollowButton = ({ channelId, getChannels }) => {
   };
   return (
     <button onClick={handleFollowChannel} className="channel-follow-button">
-      {isFollow ? "フォロー中" : "フォローする"}
+      {isFollow === null ? "" : isFollow ? "フォロー中" : "フォローする"}
     </button>
   );
 };
