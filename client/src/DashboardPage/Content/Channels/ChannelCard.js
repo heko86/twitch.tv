@@ -30,7 +30,7 @@ export const ChannelCard = ({
           color: isOnline ? "green" : "red",
         }}
       >
-        {isOnline ? "Online" : "Offline"}
+        {isOnline ? "オンライン" : "オフライン"}
       </span>
     </div>
   );

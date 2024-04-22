@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { ChannelView } from "../Content/ChannelView";
 
 export const Sidebar = ({ channels, getChannels }) => {
   const navigate = useNavigate();
@@ -17,7 +16,7 @@ export const Sidebar = ({ channels, getChannels }) => {
   return (
     <div className="sidebar-container">
       <span className="sidebar-title">For you</span>
-      <span className="sidebar-subtitle">FOLLOWED CHANNEL</span>
+      <span className="sidebar-subtitle">フォロー済みのチャンネル</span>
       {channels?.map((channel) => {
         return (
           <div
@@ -32,7 +31,7 @@ export const Sidebar = ({ channels, getChannels }) => {
               className="sidebar-list-status"
               style={{ color: channel.isOnline ? "green" : "red" }}
             >
-              {channel.isOnline ? "OnLine" : "Offline"}
+              {channel.isOnline ? "オンライン" : "オフライン"}
             </span>
           </div>
         );
