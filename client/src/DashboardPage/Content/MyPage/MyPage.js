@@ -26,8 +26,10 @@ export const MyPage = () => {
           <span className="point-text">
             {point === null ? (
               <CircularProgress color="secondary" />
-            ) : (
+            ) : point ? (
               `${point}pt`
+            ) : (
+              "0pt"
             )}
           </span>
         </div>
