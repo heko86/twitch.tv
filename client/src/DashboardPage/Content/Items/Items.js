@@ -13,7 +13,7 @@ import {
   DialogContent,
   DialogContentText,
 } from "@mui/material";
-import { useChargePoint } from "../../../shared/hooks/useChargePoint";
+import { usePurchaseItem } from "../../../shared/hooks/usePurchaseItem";
 const ItemData = [
   {
     itemName: "文鳥（ビール）",
@@ -59,10 +59,10 @@ const ConfirmDialog = ({
   openDialog = false,
   switchDialog,
 }) => {
-  const { chargePoint } = useChargePoint();
+  const { purchaseItem } = usePurchaseItem();
   const handleClose = () => switchDialog(false);
   const handlePurchaseItem = (point) => {
-    chargePoint(point);
+    purchaseItem(point);
     switchDialog(false);
   };
   return (

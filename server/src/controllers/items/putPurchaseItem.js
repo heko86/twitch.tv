@@ -1,16 +1,21 @@
 import User from "../../models/User.js";
 
-export const putChargePoint = async (req, res) => {
+export const putPurchaseItem = async (req, res) => {
   try {
     const { userId } = req.user;
 
     const { point } = req.body;
 
     let userPoint = await User.findById(userId, { point: 1 });
+
     if (!userPoint.point) {
       userPoint.point = 0;
     }
-    userPoint.point = userPoint.point += point;
+
+    if (userPoint.point < point) {
+      return res.status(400).send("ポイントが足りません。");
+    }
+    userPoint.point = userPoint.point -= point;
 
     await User.updateOne({ _id: userId }, { point: userPoint.point });
 

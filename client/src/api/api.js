@@ -122,9 +122,9 @@ export const followChannel = async (channelId, searchFlag) => {
   }
 };
 
-export const chargePoint = async (point) => {
+export const purchaseItem = async (point) => {
   try {
-    return await apiClient.put("/items/point", { point });
+    return await apiClient.put("/items/purchase", { point });
   } catch (exception) {
     return {
       error: true,
