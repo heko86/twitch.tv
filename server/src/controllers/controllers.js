@@ -9,3 +9,4 @@ export { putChannelSettings } from "./settings/putChannelSettings.js";
 export { patchChangePassword } from "./settings/patchChangePassword.js";
 export { putPurchaseItem } from "./items/putPurchaseItem.js";
 export { getPoints } from "./items/getPoints.js";
+export { getHeldItems } from "./items/getHeldItems.js";

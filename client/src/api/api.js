@@ -143,3 +143,14 @@ export const getPoints = async () => {
     };
   }
 };
+
+export const getHeldItems = async () => {
+  try {
+    return await apiClient.get("/items/heldItems");
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};

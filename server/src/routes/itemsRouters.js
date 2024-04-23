@@ -2,7 +2,11 @@ import express from "express";
 import Joi from "joi";
 import { verifyToken } from "../controllers/middlewares/auth.js";
 import ExpressValidation from "express-joi-validation";
-import { getPoints, putPurchaseItem } from "../controllers/controllers.js";
+import {
+  getHeldItems,
+  getPoints,
+  putPurchaseItem,
+} from "../controllers/controllers.js";
 
 const router = express.Router();
 
@@ -21,5 +25,6 @@ router.put(
 );
 
 router.get("/points", verifyToken, getPoints);
+router.get("/heldItems", verifyToken, getHeldItems);
 
 export default router;
