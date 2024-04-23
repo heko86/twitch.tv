@@ -1,10 +1,4 @@
 import React, { useState } from "react";
-import beerBuncho from "../../../resources/images/items/beer-buncho.png";
-import bunchoKashige from "../../../resources/images/items/buncho-kashige.png";
-import mattariBuncho from "../../../resources/images/items/mattari-buncho.png";
-import susaBuncho from "../../../resources/images/items/susa-buncho.png";
-import toris from "../../../resources/images/items/toris.png";
-import workBuncho from "../../../resources/images/items/work-buncho.png";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import {
@@ -14,38 +8,7 @@ import {
   DialogContentText,
 } from "@mui/material";
 import { usePurchaseItem } from "../../../shared/hooks/usePurchaseItem";
-const ItemData = [
-  {
-    itemName: "文鳥（ビール）",
-    image: beerBuncho,
-    point: 100,
-  },
-  {
-    itemName: "文鳥（首傾げ）",
-    image: bunchoKashige,
-    point: 150,
-  },
-  {
-    itemName: "文鳥（まったり）",
-    image: mattariBuncho,
-    point: 200,
-  },
-  {
-    itemName: "文鳥",
-    image: susaBuncho,
-    point: 250,
-  },
-  {
-    itemName: "鳥（複数）",
-    image: toris,
-    point: 300,
-  },
-  {
-    itemName: "文鳥（働く）",
-    image: workBuncho,
-    point: 350,
-  },
-];
+import { ItemData } from "../../../resources/images/items/items";
 
 const style = {
   display: "flex",
