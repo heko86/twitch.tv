@@ -10,6 +10,7 @@ const validator = ExpressValidation.createValidator({});
 
 const purchaseItemSchema = Joi.object({
   point: Joi.number().required(),
+  itemName: Joi.string().required(),
 });
 
 router.put(

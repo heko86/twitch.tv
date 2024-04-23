@@ -24,8 +24,8 @@ const ConfirmDialog = ({
 }) => {
   const { purchaseItem } = usePurchaseItem();
   const handleClose = () => switchDialog(false);
-  const handlePurchaseItem = (point) => {
-    purchaseItem(point);
+  const handlePurchaseItem = (point, itemName) => {
+    purchaseItem(point, itemName);
     switchDialog(false);
   };
   return (
@@ -47,7 +47,7 @@ const ConfirmDialog = ({
           <Button onClick={handleClose}>キャンセル</Button>
           <Button
             onClick={() => {
-              handlePurchaseItem(point);
+              handlePurchaseItem(point, itemName);
             }}
           >
             購入

@@ -8,6 +8,7 @@ const userSchema = new Schema({
   password: { type: String },
   channel: { type: Schema.Types.ObjectId, ref: "Channel" },
   point: { type: Number },
+  items: { type: [String] },
   followedChannels: { type: [{ type: Schema.Types.ObjectId, ref: "Channel" }] },
 });
 
