@@ -1,19 +1,7 @@
 import React, { useState } from "react";
-import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
-import {
-  Button,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-} from "@mui/material";
 import { usePurchaseItem } from "../../../shared/hooks/usePurchaseItem";
 import { ItemData } from "../../../resources/images/items/items";
-
-const style = {
-  display: "flex",
-  alignItems: "center",
-};
+import { CheckDialog } from "./CheckDialog";
 
 const ConfirmDialog = ({
   itemName,
@@ -30,30 +18,18 @@ const ConfirmDialog = ({
   };
   return (
     <>
-      <Dialog
-        open={openDialog}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
+      <CheckDialog
+        dialogTitle="購入確認"
+        openDialog={openDialog}
+        handleClose={handleClose}
+        confirmText="購入"
+        handleOnClick={() => {
+          handlePurchaseItem(point, itemName);
+        }}
       >
-        <DialogTitle id="alert-dialog-title">{"購入確認"}</DialogTitle>
-        <DialogContent css={style}>
-          <DialogContentText sx={style} id="alert-dialog-description">
-            <img src={img} alt="アイテム画像" className="item-size" />
-            {`【${itemName}(${point}pt)】を購入します。よろしいですか？`}
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>キャンセル</Button>
-          <Button
-            onClick={() => {
-              handlePurchaseItem(point, itemName);
-            }}
-          >
-            購入
-          </Button>
-        </DialogActions>
-      </Dialog>
+        <img src={img} alt="アイテム画像" className="item-size" />
+        {`【${itemName}(${point}pt)】を購入します。よろしいですか？`}
+      </CheckDialog>
     </>
   );
 };
