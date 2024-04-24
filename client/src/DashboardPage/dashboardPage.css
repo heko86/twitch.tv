@@ -372,3 +372,22 @@
   justify-content: center;
   align-items: center;
 }
+
+.held-point {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heldItems-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.heldItem-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}

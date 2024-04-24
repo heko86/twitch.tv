@@ -10,3 +10,4 @@ export { patchChangePassword } from "./settings/patchChangePassword.js";
 export { putPurchaseItem } from "./items/putPurchaseItem.js";
 export { getPoints } from "./items/getPoints.js";
 export { getHeldItems } from "./items/getHeldItems.js";
+export { postChargePoint } from "./items/postChargePoint.js";

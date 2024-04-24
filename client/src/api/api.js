@@ -154,3 +154,14 @@ export const getHeldItems = async () => {
     };
   }
 };
+
+export const postChargePoint = async (point) => {
+  try {
+    return await apiClient.post("/items/charge", { point });
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};

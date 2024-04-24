@@ -9,3 +9,4 @@ export { useFollowChannel } from "./useFollowChannel";
 export { useChatHistory } from "./useChatHistory";
 export { useGetHeldItems } from "./useGetHeldItems";
 export { useGetItems } from "./useGetItems";
+export { usePostChargePoint } from "./usePostChargePoint";

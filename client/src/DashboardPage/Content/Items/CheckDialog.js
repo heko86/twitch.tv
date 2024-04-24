@@ -36,8 +36,12 @@ export const CheckDialog = ({
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>キャンセル</Button>
-          <Button onClick={handleOnClick}>{confirmText}</Button>
+          <Button color="secondary" onClick={handleClose}>
+            キャンセル
+          </Button>
+          <Button color="secondary" onClick={handleOnClick}>
+            {confirmText}
+          </Button>
         </DialogActions>
       </Dialog>
     </>

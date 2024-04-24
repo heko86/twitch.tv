@@ -5,6 +5,7 @@ import ExpressValidation from "express-joi-validation";
 import {
   getHeldItems,
   getPoints,
+  postChargePoint,
   putPurchaseItem,
 } from "../controllers/controllers.js";
 
@@ -17,6 +18,10 @@ const purchaseItemSchema = Joi.object({
   itemName: Joi.string().required(),
 });
 
+const chargePoint = Joi.object({
+  point: Joi.number().required(),
+});
+
 router.put(
   "/purchase",
   verifyToken,
@@ -26,5 +31,11 @@ router.put(
 
 router.get("/points", verifyToken, getPoints);
 router.get("/heldItems", verifyToken, getHeldItems);
+router.post(
+  "/charge",
+  verifyToken,
+  validator.body(chargePoint),
+  postChargePoint
+);
 
 export default router;
