@@ -16,7 +16,7 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import { CheckDialog } from "../Items/CheckDialog";
 
-const HeldItems = (itemsData) => {
+const HeldItems = ({ itemsData }) => {
   const { getItems } = useGetItems();
   const items = getItems(itemsData);
 

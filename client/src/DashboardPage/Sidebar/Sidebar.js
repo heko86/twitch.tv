@@ -8,7 +8,6 @@ export const Sidebar = ({ channels, getChannels }) => {
   }
 
   const handleChannelClick = (channel) => {
-    console.log(channel);
     navigate(`/channel/${channel.id}`);
     window.location.reload();
   };

@@ -220,6 +220,7 @@
 .channel-description-title {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   font-size: 24px;
   margin-bottom: 5px;
   margin-left: 10px;
@@ -298,6 +299,18 @@
   transition: 0.3s;
 }
 
+.channel-gift-button {
+  height: 30px;
+  width: 120px;
+  margin-left: 15px;
+  background-color: #772ce8;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-right: 30px;
+}
+
 .channel-follow-button:hover {
   opacity: 0.7;
 }
@@ -344,6 +357,13 @@
   text-align: center;
   cursor: pointer;
   transition: transform 0.3s ease;
+}
+
+.checked-item-container {
+  background-color: #d1b9f6;
+  border-radius: 50px;
+  text-align: center;
+  cursor: pointer;
 }
 
 .item-container:hover {
