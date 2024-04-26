@@ -1,4 +1,5 @@
 import User from "../../models/User.js";
+import { v4 as uuid } from "uuid";
 
 export const putPurchaseItem = async (req, res) => {
   try {
@@ -16,8 +17,16 @@ export const putPurchaseItem = async (req, res) => {
       return res.status(400).send("ポイントが足りません。");
     }
 
+    const uniqueId = uuid();
+
     userData.point = userData.point -= point;
-    userData.items.push(itemName);
+
+    const itemsInfo = {
+      itemId: uniqueId,
+      itemName: itemName,
+    };
+
+    userData.items.push(itemsInfo);
     await userData.save();
 
     await User.updateOne({ _id: userId }, { point: userData.point });
