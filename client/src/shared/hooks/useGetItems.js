@@ -1,14 +1,20 @@
 import { ItemData } from "../../resources/images/items/items";
 export const useGetItems = () => {
-  const getItems = (itemName) => {
-    if (itemName && itemName.items) {
-      return itemName.items.map((heldItem) => {
-        return ItemData.find((item) => {
-          return item.itemName === heldItem;
-        });
+  const getItems = (items) => {
+    if (items) {
+      return items.items.map((heldItem) => {
+        const itemData = ItemData.find(
+          (item) => item.itemName === heldItem.itemName
+        );
+        return {
+          itemId: heldItem.itemId,
+          itemName: itemData.itemName,
+          image: itemData.image,
+          point: itemData.point,
+        };
       });
     }
-    return [];
+    return null;
   };
   return { getItems };
 };

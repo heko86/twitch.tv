@@ -23,8 +23,8 @@ const HeldItems = ({ itemsData }) => {
   return (
     <>
       {items
-        ? items.map((item, index) => (
-            <div key={index} className="item-container">
+        ? items.map((item) => (
+            <div key={item.itemId} className="item-container">
               <img src={item.image} alt="アイテム画像" className="item-size" />
               <div>{item.itemName}</div>
               <div>{item.point}&nbsp;pt</div>
