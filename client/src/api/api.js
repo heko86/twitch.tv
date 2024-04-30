@@ -122,6 +122,17 @@ export const followChannel = async (channelId, searchFlag) => {
   }
 };
 
+export const postGiftItem = async (itemId) => {
+  try {
+    return await apiClient.post("/channels/gift", { itemId });
+  } catch (exception) {
+    return {
+      error: true,
+      exception,
+    };
+  }
+};
+
 export const purchaseItem = async (point, itemName) => {
   try {
     return await apiClient.put("/items/purchase", { point, itemName });

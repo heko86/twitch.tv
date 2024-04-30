@@ -3,6 +3,7 @@ import {
   useFollowChannel,
   useGetHeldItems,
   useGetItems,
+  usePostGiftItem,
   useUserDetails,
 } from "../../../shared/hooks";
 import { CheckDialog } from "../Items/CheckDialog";
@@ -32,16 +33,26 @@ const FollowButton = ({ channelId, getChannels }) => {
 
 const HeldItemsDialog = ({ dialogOpen = false, handleDialogClose }) => {
   const { getItems } = useGetItems();
-  const [heldItems, setHeldItems] = useState(null);
   const { getHeldItems } = useGetHeldItems();
+  const { postGiftItem } = usePostGiftItem();
+  const [heldItems, setHeldItems] = useState(null);
+  const [checked, setChecked] = useState("");
+  const [checkItems, setCheckItems] = useState("");
   const items = getItems(heldItems);
 
   const handleClose = () => {
     handleDialogClose(false);
   };
 
-  const handleCheck = (e) => {
-    return {};
+  const handleCheck = (itemId, itemName) => {
+    setCheckItems(itemId);
+    setChecked(itemName);
+  };
+
+  const handleClickToGift = () => {
+    postGiftItem(checkItems);
+    handleClose(false);
+    window.location.reload();
   };
 
   useEffect(() => {
@@ -63,18 +74,19 @@ const HeldItemsDialog = ({ dialogOpen = false, handleDialogClose }) => {
         openDialog={dialogOpen}
         handleClose={handleClose}
         confirmText="贈る"
-        handleOnClick={() => {}}
+        handleOnClick={handleClickToGift}
         color="secondary"
       >
         {items ? (
-          items.map((item, index) => (
+          items.map((item) => (
             <Checkbox
+              checked={checked === item.itemName}
               color="default"
               onChange={() => {
-                handleCheck("アイテムID渡す予定");
+                handleCheck(item.itemId, item.itemName);
               }}
               icon={
-                <div key={index} className="item-container">
+                <div key={item.itemId} className="item-container">
                   <img
                     src={item.image}
                     alt="アイテム画像"
@@ -85,7 +97,7 @@ const HeldItemsDialog = ({ dialogOpen = false, handleDialogClose }) => {
                 </div>
               }
               checkedIcon={
-                <div key={index} className="checked-item-container">
+                <div key={item.itemId} className="checked-item-container">
                   <img
                     src={item.image}
                     alt="アイテム画像"
